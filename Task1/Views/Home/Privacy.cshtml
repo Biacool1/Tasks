@@ -243,7 +243,33 @@
                   priceException: "Временно недоступно"
                 }
         ]
+         //cкрипт вывода карточек с пиццами и логикой для некого исключения
+          jQuery(function($) {
 
+          for (let i = 0; i < pizzas.length; i++) {
+
+            let priceHtml;
+
+            if ('price' in pizzas[i]) {
+              priceHtml = pizzas[i].price + '₽';
+            }
+
+            else {
+              priceHtml = pizzas[i].priceException;
+            }
+
+            $('#card').append(
+              `
+              <div class="item">
+                <img src="${pizzas[i].image}" class="image">
+                <h2>${pizzas[i].name}</h2>
+                <h6>${pizzas[i].ingredients.join(', ')}</h6>
+                <div class="price">${priceHtml}</div>
+              </div>
+              `
+            );
+          }
+        });
         </script> 
     </body>
 </html>
