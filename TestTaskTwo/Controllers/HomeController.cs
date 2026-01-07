@@ -8,7 +8,9 @@ namespace TestTaskTwo.Controllers
     {
         public IActionResult Index()
         {
-            return View();
+            var repo = new PizzaRepository();
+            var pizzas = repo.GetPizzas();
+            return View(pizzas);
         }
 
         public IActionResult Privacy()
