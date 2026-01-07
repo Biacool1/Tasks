@@ -1,4 +1,6 @@
-﻿namespace TestTaskTwo.Models
+﻿using System.Collections.ObjectModel;
+
+namespace TestTaskTwo.Models
 {
     public class PizzaModel
     {
@@ -268,5 +270,9 @@
                 Image = "indi_mandarin_1.jpg"
             }
         };
+        public ReadOnlyCollection<PizzaModel> GetPizzas()
+        {
+            return pizzas.AsReadOnly();
+        }
     }
 }
