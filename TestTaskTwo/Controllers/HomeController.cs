@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ViewEngines;
 using System.Diagnostics;
 using TestTaskTwo.Models;
 
@@ -17,6 +18,15 @@ namespace TestTaskTwo.Controllers
         {
             return View();
         }
+
+        [HttpGet]
+        public IActionResult GetPizza()
+        {
+            var repo = new PizzaRepository();
+            var pizzas = repo.pizzas;
+            return new JsonResult(pizzas);
+        }
+
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
