@@ -25,7 +25,9 @@ namespace TestTaskTwo.Controllers
             return View(pizzas);
         }
         public IActionResult IndexNew() {
-            return View();
+            var repo = new PizzaRepository();
+            var pizzas = repo.GetPizzas();
+            return View(pizzas);
         }
 
         [HttpGet]

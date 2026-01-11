@@ -13,7 +13,7 @@
     </div>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-   <script>
+    <script>
 
         var url = '@Url.Action("GetPizza", "Home")';
         var imgBase = '@Url.Content("~/images/")';
@@ -36,8 +36,8 @@
                      + '<img src="' + imageSrc + '"'
                      + ' class="image"'
                      + ' data-id="' + id + '"'
-                     + ' data-detail-url="' + link + '/' + id + '"'
-                     + '<a class ="name_Link" href="'+ link + '/' + id+'">'+'<h2>' + name + '</h2>'+'</a>'
+                     + ' data-detail-url="' + link + '/' + id + '">'
+                     + '<h2>'+'<a class ="name_Link" href="'+ link + '/' + id+'">' + name+'</a>' + '</h2>'
                      + '<h6>' + ingredients + '</h6>'
                      + '<div class="price">' + priceHtml + '</div>'
                      + '</div>';

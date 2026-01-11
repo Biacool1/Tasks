@@ -95,3 +95,28 @@ body {
     text-decoration: none;
     cursor: pointer;
 }
+
+/*модальное окно*/
+#pizzaModal .pizza-name,
+#pizzaModal .pizza-ingredients {
+    font-weight: 400;
+    color: #222;
+}
+
+#pizzaModal .pizza-price {
+    font-weight: 700;
+}
+
+#pizzaModal .pizza-modal-img {
+    max-width: 220px;
+    width: 100%;
+    height: auto;
+    border-radius: 6px;
+    object-fit: cover;
+}
+
+#pizzaModal .modal-body {
+    align-items: flex-start;
+    gap: 1rem;
+}
+
