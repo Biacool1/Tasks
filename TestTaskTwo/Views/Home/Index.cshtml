@@ -9,7 +9,7 @@
         @foreach (var pizza in Model)
         {
             <div class="item">
-                <img src="@(Url.Content("~/images/" + pizza.Image))" class="image">
+                <img src="@(Url.Content("~/images/" + pizza.Image))" class="image" data-id="@pizza.Id" data-detail-url="@Url.Action("Detail", "Home", new { id = pizza.Id })">
                 <h2><a class ="name_Link" href='@Url.Action("Detail", "Home", new { id = pizza.Id })'>@pizza.Name</a></h2>
                 <h6>@pizza.Ingredients</h6>
                 <!-- Тут вывод цены. Снова решил сделать типо исключение 
@@ -26,5 +26,25 @@
             </div>
         }
     </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script>
+        $(function() {
+          $('.my-flex-container').on('click', '.image', function (e) {
+          
+            var $img = $(this); 
+            var url = $img.data('detail-url');
+
+            if (!url) {
+              var id = $img.data('id');
+              if (id === undefined) return; 
+              url = '/Home/Detail/' + id; 
+            
+            }
+            location.href = url;
+          });
+        });
+    </script>
 </body>
 </html>
