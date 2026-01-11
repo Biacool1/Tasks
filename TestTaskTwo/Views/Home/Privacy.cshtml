@@ -13,11 +13,11 @@
     </div>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
+   <script>
 
         var url = '@Url.Action("GetPizza", "Home")';
         var imgBase = '@Url.Content("~/images/")';
-
+        var link = '@Url.Action("Detail", "Home")';
         $.getJSON(url)
 
         //в задании было сказано написать НАЗВАНИЕ картинки, а не путь и я написал как сказано,
@@ -29,15 +29,12 @@
             var imageSrc = (imgBase + imageName);
             var ingredients = p.ingredients;
             var name = p.name;
-            var priceHtml = p.price + '₽';
-
-            if (p.price=="Временно недоступно"){
-                var priceHtml = p.price;
-            }
+            var id = p.id || p.Id || '';
+            var priceHtml = (p.price === "Временно недоступно") ? p.price : (p.price + '₽');
 
               var html = '<div class="item">'
                      + '<img src="' + imageSrc + '" class="image"/>'
-                     + '<h2>' + name + '</h2>'
+                     +'<a class ="name_Link" href="'+ link +"/"+ id+'">'+'<h2>' + name + '</h2>'+'</a>'
                      + '<h6>' + ingredients + '</h6>'
                      + '<div class="price">' + priceHtml + '</div>'
                      + '</div>';

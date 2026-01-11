@@ -10,7 +10,7 @@
         {
             <div class="item">
                 <img src="@(Url.Content("~/images/" + pizza.Image))" class="image">
-                <h2>@pizza.Name</h2>
+                <h2><a class ="name_Link" href='@Url.Action("Detail", "Home", new { id = pizza.Id })'>@pizza.Name</a></h2>
                 <h6>@pizza.Ingredients</h6>
                 <!-- Тут вывод цены. Снова решил сделать типо исключение 
                     Я всё понимаю. Это же работает, почему нет?
@@ -21,7 +21,7 @@
                 }
                 else
                 {
-                    <div class="price">@($"{@pizza.Price} ₽")</div>
+                    <div class="price">@($"{pizza.Price}₽")</div>
                 }
             </div>
         }
