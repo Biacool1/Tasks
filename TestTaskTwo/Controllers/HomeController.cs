@@ -18,6 +18,15 @@ namespace TestTaskTwo.Controllers
         {
             return View();
         }
+        public IActionResult Detail(int id)
+        {
+            var repo = new PizzaRepository();
+            var pizzas = repo.FindById(id);
+            return View(pizzas);
+        }
+        public IActionResult IndexNew() {
+            return View();
+        }
 
         [HttpGet]
         public IActionResult GetPizza()
@@ -26,13 +35,7 @@ namespace TestTaskTwo.Controllers
             var pizzas = repo.pizzas;
             return new JsonResult(pizzas);
         }
-        public IActionResult Detail(int id)
-        {
-            var repo = new PizzaRepository();
-            var pizzas = repo.FindById(id);
-            return View(pizzas);
-        }
-
+       
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
