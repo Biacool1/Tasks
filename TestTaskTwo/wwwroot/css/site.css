@@ -1,0 +1,122 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.Pizza {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 10vh;
+}
+
+.my-flex-container {
+    display: flex;
+    justify-content: flex-start;
+    align-items: stretch; 
+    height: 100%;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.item {
+    border: solid #808080;
+    background-color: white;
+    min-height: 550px;
+    border-width: 3px;
+    max-width: 24.2%;
+    color: black;
+    padding: 15px;
+    border-radius: 25px;
+    /* позиционирование дочернего элемента */
+    position: relative; 
+}
+
+.price {
+    position: absolute; /* Позиционирование элемента с ценой */
+    bottom: 15px; /* Отступ от нижней границы блока */
+    left: 15px; /* Отступ от левой границы блока */
+    padding: 5px; /* Добавлен внутренний отступ для лучшего отображения */
+    font-weight: bold;
+    font-size: 30px;
+}
+
+.image {
+    cursor: pointer;
+    outline: none;
+    max-width: 100%; /* Ограничиваем ширину изображения */
+    height: auto; /* Автоматическая высота для сохранения пропорций */
+}
+
+/*Страница Detail*/
+.itemDetail {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 600px;
+    margin: 20px auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    border: 3px solid #808080;
+    background-color: #fff;
+    min-height: 550px;
+    color: #000;
+    padding: 20px;
+    border-radius: 25px;
+    position: relative;
+    overflow: hidden;
+}
+
+.itemDetail h2 {
+    text-align: left;
+    font-size: 40px;
+}
+
+.itemDetail h6 {
+    text-align: left;
+    font-size: 20px;
+    font-weight: 400;
+    max-width: 90%;
+    margin-bottom: 100px;
+}
+.imageDetail {
+    width: 100%;
+    max-width: 600px;
+    height: auto;
+    border-radius: 10px;
+    object-fit: cover;
+    display: block;
+}
+.name_Link {
+    font-size: 32px;
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/*модальное окно*/
+#pizzaModal .pizza-name,
+#pizzaModal .pizza-ingredients {
+    font-weight: 400;
+    color: #222;
+}
+
+#pizzaModal .pizza-price {
+    font-weight: 700;
+}
+
+#pizzaModal .pizza-modal-img {
+    max-width: 220px;
+    width: 100%;
+    height: auto;
+    border-radius: 6px;
+    object-fit: cover;
+}
+
+#pizzaModal .modal-body {
+    align-items: flex-start;
+    gap: 1rem;
+}
+
