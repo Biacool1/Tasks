@@ -37,7 +37,14 @@ namespace TestTaskTwo.Controllers
             var pizzas = repo.pizzas;
             return new JsonResult(pizzas);
         }
-       
+        [HttpGet]
+        public IActionResult IndexNewJson(int id)
+        {
+            var repo = new PizzaRepository();
+            var pizza = repo.FindById(id);
+            if (pizza == null) return NotFound();
+            return Json(pizza);
+        }
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

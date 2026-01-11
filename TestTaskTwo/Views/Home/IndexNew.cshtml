@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/css/style.css" rel="stylesheet">
+    <link href="/css/site.css" rel="stylesheet">
 </head>
 <body>
     
@@ -30,7 +30,7 @@
             </div>
         }
     </div>
-
+    <!-- модальное окно -->
     <div class="modal fade" id="pizzaModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-lg modal-dialog-centered">
             <div class="modal-content">
@@ -40,7 +40,7 @@
                 </div>
 
                 <div class="modal-body d-flex">
-                    <img id="pizzaModalImg" src="" class="pizza-modal-img" >
+                    <img id="pizzaModalImg" src="" class="pizza-modal-img " alt="">
                     <div>
                         <h6 id="pizzaModalIngredients" class="pizza-ingredients"></h6>
                         <div id="pizzaModalPrice" class="pizza-price"></div>
@@ -54,21 +54,34 @@
 
     <!-- клик по картинке -->
     <script>
-        $(function() {
-          $('.my-flex-container').on('click', '.image', function (e) {
+        var baseUrl = '@Url.Action("IndexNewJson", "Home")';
+        var imagesBase = '@Url.Content("~/images/")';
 
-            var $img = $(this);
-            var url = $img.data('detail-url');
-
-            if (!url) {
-              var id = $img.data('id');
-              if (id === undefined) return;
-              url = '/Home/Detail/' + id;
-
-            }
-            location.href = url;
+        $(function(){
+          $('.my-flex-container').on('click', '.image', function(e){
+            e.preventDefault();
+            var id = $(this).data('id');
+            if (!id) return;
+            $.getJSON(baseUrl, { id: id }).done(function(pizza){
+              ShowPizza(pizza);
+            });
           });
         });
+        //вывод информации в модальное окно
+        function ShowPizza(pizza){
+          var name = pizza.Name || pizza.name;
+          var ingredients = pizza.Ingredients || pizza.ingredients;
+          var image = pizza.Image || pizza.image;
+          var imgSrc = (image.indexOf('/') === 0 || image.indexOf('http') === 0) ? image : imagesBase + image;
+
+          $('#pizzaModal .pizza-name').text(name);
+          $('#pizzaModalImg').attr('src', imgSrc);
+          $('#pizzaModalIngredients').text(ingredients);
+          var price = pizza.Price !== undefined ? pizza.Price : pizza.price;
+          $('#pizzaModalPrice').text(price);
+
+          bootstrap.Modal.getOrCreateInstance(document.getElementById('pizzaModal')).show();
+        }
     </script>
 
     <!-- клик по названию -->
@@ -96,6 +109,6 @@
           });
         });
     </script>
-    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
