@@ -1,31 +1,48 @@
-html {
-  font-size: 14px;
-}
-
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
-}
-
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
-}
-
-html {
-  position: relative;
-  min-height: 100%;
-}
-
 body {
-  margin-bottom: 60px;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
 }
 
-.form-floating > .form-control-plaintext::placeholder, .form-floating > .form-control::placeholder {
-  color: var(--bs-secondary-color);
-  text-align: end;
+.Pizza {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 10vh;
 }
 
-.form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
-  text-align: start;
+.my-flex-container {
+    display: flex;
+    justify-content: flex-start;
+    align-items: stretch; 
+    height: 100%;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.item {
+    border: solid #808080;
+    background-color: white;
+    min-height: 550px;
+    border-width: 3px;
+    max-width: 24.2%;
+    color: black;
+    padding: 15px;
+    border-radius: 25px;
+    /* позиционирование дочернего элемента */
+    position: relative; 
+}
+
+.price {
+    position: absolute; /* Позиционирование элемента с ценой */
+    bottom: 15px; /* Отступ от нижней границы блока */
+    left: 15px; /* Отступ от левой границы блока */
+    padding: 5px; /* Добавлен внутренний отступ для лучшего отображения */
+    font-weight: bold;
+    font-size: 30px;
+}
+
+.image {
+    max-width: 100%; /* Ограничиваем ширину изображения */
+    height: auto; /* Автоматическая высота для сохранения пропорций */
 }

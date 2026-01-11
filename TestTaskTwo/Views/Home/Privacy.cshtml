@@ -1,0 +1,67 @@
+﻿@model IEnumerable<TestTaskTwo.Models.PizzaModel>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <title>Пиццы</title>
+
+</head>
+<body>
+
+    <div class="Pizza"><h1>Пиццы</h1></div>
+    <div class="my-flex-container" id="card">
+        <!-- содержимое плитки -->
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+   <script>
+
+        var url = '@Url.Action("GetPizza", "Home")';
+        var imgBase = '@Url.Content("~/images/")';
+        var link = '@Url.Action("Detail", "Home")';
+        $.getJSON(url)
+
+        //в задании было сказано написать НАЗВАНИЕ картинки, а не путь и я написал как сказано,
+        // получилась путаница в переменных
+        .done(function(pizzas) {
+          for (var i = 0; i < pizzas.length; i++) {
+            var p = pizzas[i];
+            var imageName = p.image || p.Image || '';
+            var imageSrc = (imgBase + imageName);
+            var ingredients = p.ingredients;
+            var name = p.name;
+            var id = p.id || p.Id || '';
+            var priceHtml = (p.price === "Временно недоступно") ? p.price : (p.price + '₽');
+
+              var html = '<div class="item">'
+                     + '<img src="' + imageSrc + '"'
+                     + ' class="image"'
+                     + ' data-id="' + id + '"'
+                     + ' data-detail-url="' + link + '/' + id + '"'
+                     + '<a class ="name_Link" href="'+ link + '/' + id+'">'+'<h2>' + name + '</h2>'+'</a>'
+                     + '<h6>' + ingredients + '</h6>'
+                     + '<div class="price">' + priceHtml + '</div>'
+                     + '</div>';
+                  $('#card').append(html);
+                }
+              })
+    </script>
+
+    <script>
+        $(function() {
+          $('.my-flex-container').on('click', '.image', function (e) {
+
+            var $img = $(this);
+            var url = $img.data('detail-url');
+
+            if (!url) {
+              var id = $img.data('id');
+              if (id === undefined) return;
+              url = '/Home/Detail/' + id;
+            }
+            location.href = url;
+          });
+        });
+    </script>
+
+</body>
+</html>
